@@ -10,7 +10,7 @@ export default function Home() {
   const [valor2, setValor2] = useState(0);
   const [pontuacao1, setPontuacao1] = useState(0);
   const [pontuacao2, setPontuacao2] = useState(0);
-  const [rodada, setRodada] = useState(1);
+  let [rodada, setRodada] = useState(1);
 
   function reiniciarEstado() {
     setValor(0)
@@ -21,12 +21,15 @@ export default function Home() {
   }
 
   function reiniciarValor() {
+    if(rodada > 5){
+      return
+    }
     setValor(0)
     setValor2(0)
   }
 
   const rolarDado = () => {
-    if (rodada >= 5) {
+    if (rodada === 5) {
       return
     }
     const novoValor = Math.floor(Math.random() * 6) + 1;
@@ -44,7 +47,7 @@ export default function Home() {
       reiniciarValor();
     }, 700);
     const rodadaAtual = rodada + 1
-    setRodada(rodadaAtual)
+    setRodada(rodada += 1)
   };
 
   useEffect(() => {
@@ -63,7 +66,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center gap-4 mt-10">
       <Rodada rodada={rodada} />
-      
+
       <div className="flex gap-4">
         <div className="flex flex-col items-center">
           <Dado valor={valor1} />
