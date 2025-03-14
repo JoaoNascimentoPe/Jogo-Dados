@@ -10,7 +10,7 @@ export default function Home() {
   const [valor2, setValor2] = useState(0);
   const [pontuacao1, setPontuacao1] = useState(0);
   const [pontuacao2, setPontuacao2] = useState(0);
-  let [rodada, setRodada] = useState(1);
+  const [rodada, setRodada] = useState(1);
 
   function reiniciarEstado() {
     setValor(0)
@@ -29,7 +29,7 @@ export default function Home() {
   }
 
   const rolarDado = () => {
-    if (rodada === 5) {
+    if (rodada > 5) {
       return
     }
     const novoValor = Math.floor(Math.random() * 6) + 1;
@@ -37,7 +37,11 @@ export default function Home() {
   };
 
   const rolarDado2 = () => {
-    if (valor1 == 0){
+    if (valor1 === 0){
+      return
+    }
+
+    if (rodada > 5) {
       return
     }
 
@@ -47,7 +51,7 @@ export default function Home() {
       reiniciarValor();
     }, 700);
     const rodadaAtual = rodada + 1
-    setRodada(rodada += 1)
+    setRodada(rodadaAtual)
   };
 
   useEffect(() => {
@@ -91,7 +95,7 @@ export default function Home() {
 
       <Placar pontuacao1={pontuacao1} pontuacao2={pontuacao2} />
 
-      {rodada === 5 && (
+      {rodada > 5 && (
         <button
           onClick={reiniciarEstado}
           className="mt-4 px-6 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition"
