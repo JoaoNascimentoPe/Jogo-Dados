@@ -67,9 +67,21 @@ export default function Home() {
     }
   }, [valor2]);
   
+  let vencedor;
+  if (pontuacao1 > pontuacao2) {
+    vencedor = "Jogador 1 venceu!"
+  } else if(pontuacao1 === pontuacao2) {
+    vencedor = "Empate"
+  } else {
+    vencedor = "Jogador 2 venceu!"
+  }
+
   return (
     <div className="flex flex-col items-center gap-4 mt-10">
-      <Rodada rodada={rodada} />
+      {
+        rodada > 5 ? <h1>Fim, {vencedor}</h1> : <Rodada rodada={rodada} />
+      }
+      
 
       <div className="flex gap-4">
         <div className="flex flex-col items-center">
