@@ -46,6 +46,18 @@ export default function Home() {
     }
 
     const novoValor = Math.floor(Math.random() * 6) + 1;
+    if (novoValor < valor1) {
+      const novaPontuacao = pontuacao1 + 1
+      setPontuacao1(novaPontuacao)
+    } else if(novoValor === valor1){
+      const novaPontuacao1 = pontuacao1 + 1
+      const novaPontuacao2 = pontuacao2 + 1
+      setPontuacao1(novaPontuacao1)
+      setPontuacao2(novaPontuacao2)
+    } else {
+      const novaPontuacao = pontuacao2 + 1
+      setPontuacao2(novaPontuacao)
+    }
     setValor2(novoValor);
     setTimeout(() => { 
       reiniciarValor();
@@ -54,18 +66,18 @@ export default function Home() {
     setRodada(rodadaAtual)
   };
 
-  useEffect(() => {
-    if (valor1 !== 0 && valor2 !== 0) {
-      if (valor1 > valor2) {
-        setPontuacao1((prev) => prev + 1);
-      } else if (valor1 === valor2) {
-        setPontuacao1((prev) => prev + 1);
-        setPontuacao2((prev) => prev + 1);
-      } else {
-        setPontuacao2((prev) => prev + 1);
-      }
-    }
-  }, [valor2]);
+  // useEffect(() => {
+  //   if (valor1 !== 0 && valor2 !== 0) {
+  //     if (valor1 > valor2) {
+  //       setPontuacao1((prev) => prev + 1);
+  //     } else if (valor1 === valor2) {
+  //       setPontuacao1((prev) => prev + 1);
+  //       setPontuacao2((prev) => prev + 1);
+  //     } else {
+  //       setPontuacao2((prev) => prev + 1);
+  //     }
+  //   }
+  // }, [valor2]);
   
   return (
     <div className="flex flex-col items-center gap-4 mt-10">
