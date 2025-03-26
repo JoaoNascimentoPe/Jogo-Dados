@@ -1,7 +1,7 @@
 "use client"
 import Placar from "@/Components/Placar";
 import Dado from "../Components/Dado"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import React from "react";
 import Rodada from "@/Components/Rodada";
 
@@ -61,23 +61,10 @@ export default function Home() {
     setValor2(novoValor);
     setTimeout(() => { 
       reiniciarValor();
-    }, 700);
+    }, 800);
     const rodadaAtual = rodada + 1
     setRodada(rodadaAtual)
   };
-
-  // useEffect(() => {
-  //   if (valor1 !== 0 && valor2 !== 0) {
-  //     if (valor1 > valor2) {
-  //       setPontuacao1((prev) => prev + 1);
-  //     } else if (valor1 === valor2) {
-  //       setPontuacao1((prev) => prev + 1);
-  //       setPontuacao2((prev) => prev + 1);
-  //     } else {
-  //       setPontuacao2((prev) => prev + 1);
-  //     }
-  //   }
-  // }, [valor2]);
   
   let vencedor;
   if (pontuacao1 > pontuacao2) {
